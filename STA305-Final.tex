@@ -1,0 +1,654 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+%
+\documentclass[12pt,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+    \setmainfont[]{Times New Roman}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={ANOVA, Model Assumption and Statistical Analysis on Effect of Household Processing Method to pH Value of Water},
+            pdfauthor={Jiaqi Bi, 1003886609; Lei Cao, 1005715111; Lanruo Li, 1005149581; Le Shen, 1005935106; Yuika Cho, 1003213186},
+            colorlinks=true,
+            linkcolor=Maroon,
+            filecolor=Maroon,
+            citecolor=Blue,
+            urlcolor=blue,
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{float}
+\singlespacing
+\pagestyle{fancy}
+\fancyhead[CO, CE]{Group 22}
+\fancyhead[LE, RO]{STA305 Final Report}
+\fancyfoot[CO, CE]{\thepage \ of \pageref{LastPage}}
+\floatplacement{figure}{H}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+
+\title{\textbf{ANOVA, Model Assumption and Statistical Analysis on Effect of
+Household Processing Method to pH Value of Water}}
+\providecommand{\subtitle}[1]{}
+\subtitle{\textbf{STA305 Final Report (LEC 0101), Group 22}}
+\author{Jiaqi Bi, 1003886609 \and Lei Cao, 1005715111 \and Lanruo Li, 1005149581 \and Le Shen, 1005935106 \and Yuika Cho, 1003213186}
+\date{}
+
+\begin{document}
+\maketitle
+
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\newpage
+
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
+
+The increased concern on water quality has been rigorously demanding,
+and this has been a public health issue for years. Primarily there are
+miscellaneous scientific articles and news about the pH value of water
+affects human health. The question of interest lies in if the household
+water processing method will affect the pH value. The experiment uses
+the most common approach that everyone can practice at home. After
+determining the sample size and the collection of experiment data,
+one-way ANOVA, linear regression modelling with dummy coding method, and
+contrasts analysis were practiced to check the statistical significance
+of the assumption. The main purpose of the project is to find the best
+way of producing an ideally higher pH value.
+
+\hypertarget{experimental-design-and-process}{%
+\subsection{Experimental Design and
+Process}\label{experimental-design-and-process}}
+
+The household water processing methods include Stilled Water, Boiled
+Water, Filtered Water, and Frozen Water. The water source is controlled
+to be tap water as gaining water from the tap is widely habitual
+everywhere. Controlling the water source prevents excessive biases
+caused by different unforeseeable water purity. Moreover, the initial
+volume of the cup of water is controlled. Indeed, the experimental unit
+is the cup of water. To reduce the confoundings of the unit, a
+Between-Subjects design is practiced throughout. As mentioned, there are
+4 levels of the predictor variable. Due to the filling time of the water
+may be different and hard to be controlled or blocked, using
+randomization that after filling all cups of water by labeling each cup
+randomly is the best way to minimize the ``time effect'' of output. The
+repliaction is easy to follow that the water source could be selected
+otherwise. There are total 48 cups of water with each has a unique
+number, such that label 1-12 cups are given the treatment of being
+frozen, 13-24 to be filtered, 25-36 to be boiled, and 37-48 to be
+stilled (Control Group).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{experiment photo.jpeg}
+  \caption{Experiment Conduction with pH Meter and Thermometer}
+\end{figure}
+\newpage
+
+The stilled water treatment can be treated as a control group to avoid
+the time being a factor of the pH value change. Blindness is not
+essential for this experiment as the output of pH value is examined by a
+specific meter (objective measurement). There is another meter involved
+in the experiment: the thermometer to ensure each treatment level has
+the same initial temperature, and each unit of a level has the same
+temperature after the treatment. Figure 1 shows these two testers and
+the experiment conduction.
+
+Specific treatment details:
+
+\begin{itemize}
+\item Stilled Water: Control Group, stilling the group until the end of the experiment.
+\item Filtered Water: Using the same water filtration device to filter all cups of this group. 
+\item Frozen Water: Using the same fridge to freeze all cups of this group simultaneously. 
+\item Boiled Water: Using the same teakettle to boil all cups of this group simultaneously.. 
+\end{itemize}
+
+Specific experiment flowchart:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.69\textwidth]{flowchart.png}
+\end{figure}
+
+\hypertarget{data-analysis}{%
+\subsection{Data Analysis}\label{data-analysis}}
+
+\hypertarget{sample-determination}{%
+\subsubsection{Sample Determination}\label{sample-determination}}
+
+Before the conduction of the experiment, the determination of sample
+size is finalized by using Balanced one way ANOVA power calculation:
+Manually set the power to be \(f=0.8\) for a large effect, that the
+result of sample size determination turns out to be \(n\doteq 12\).
+
+\hypertarget{data-visualization}{%
+\subsubsection{Data Visualization}\label{data-visualization}}
+
+Figure 2 is a general frame of the collected data where the data
+visualization is practiced. Instead of showing the pH value output, the
+graph illustrates the pH value difference of before and after experiment
+for each treatment.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{"figure.1.jpg}
+  \caption{Boxplot of Difference in pH per Water Processing Method}
+\end{figure}
+
+\hypertarget{mean-value-and-statistical-modeling}{%
+\subsubsection{Mean Value and Statistical
+Modeling}\label{mean-value-and-statistical-modeling}}
+
+While a boxplot shows intuitionistic results, the statistical
+significance of the result needs a deeper analysis. The mean value and
+variance of each treatment show that:
+
+\begin{table}[H]
+\caption{Table of Mean Value and Variance of Data}
+\vspace{5pt}
+\centering
+\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}| }
+ \hline
+ Treatment& Mean Value & Variance \\
+ \hline
+ Bolied Water   & $+0.842$    & $0.0081$\\
+ Filtered Water &   $-0.675$  & $0.0166$   \\
+ Frozen Water &$-0.225$ & $0.0130$\\
+ Stilled Water    &$+0.075$ & $0.0111$\\
+ \hline
+\end{tabular}
+\end{table}
+
+The linear regression of the data using dummy coding scheme:
+\[\hat{Y}_i=0.0750+0.7667I_{Boiled,i}-0.7500I_{Filtered,i}-0.3000I_{Frozen,i}\]
+For \(m=Boiled, Filtered, Frozen\) as Stilled Water is the default and
+has no indicators, \[
+I_{m,i}=
+\begin{cases}
+1, \text{ if $i$th case is in level $m$ }\\
+0, \text{ otherwise}
+\end{cases}
+\]
+
+\hypertarget{one-way-anova-and-testing-contrasts}{%
+\subsubsection{One-Way ANOVA and Testing
+Contrasts}\label{one-way-anova-and-testing-contrasts}}
+
+The null hypothesis is all mean pH value differences of 4 water
+processing methods are the same. The alternative hypothesis is at least
+one pair of mean pH value differences are not the same. The result shows
+a significance (p-value \(<0.05\)) of the F-test. That is, the null
+hypothesis is rejected. Thus, there is a strong evidence to conclude
+that different water processing methods defer in pH value difference.
+
+The formula of linear contrast is written as a linear combination of the
+group means (mean difference in pH value): \[\psi=\sum_{j=1}^4c_j\mu_j\]
+where \(j\) indicates each level, \(c_j\) is the coefficients in the
+contrast that needs to be restricted as the sum of coefficients to be
+\(0\): \[\sum_{j=1}^4c_j=0\]
+
+The experiment contains 4 types of water processing, and it has 3
+temperature levels after assigning treatment to those samples. The
+temperature level is marked as ``Medium'' when the temperature after the
+experiment is greater than 15 and less than 45, ``Low'' when the
+temperature after the experiment is less than 15, ``High'' when the
+temperature afterr the experiment is greater or equal to 45. Table 2
+shows everry linear combination of group means and all comparisons.
+
+\begin{table}[H]
+\caption{Table of All Comparisons and P-value}
+\vspace{5pt}
+\centering
+\begin{tabular}{ |c||c|c|c|c||c|c|  }
+ \hline
+ Group & Stilled & Boiled & Filtered & Frozen & Contrast Estimate & p-value\\
+ \hline
+ Temp Level & Medium & High & Medium & Low & & \\
+ Means ($\bar{y_j}$) & $0.075$ & $0.8417$ & $-0.6750$ & $-0.2250$ & $\hat{\psi}$ & \\
+ \hline
+ $\psi_1$ & $1$ & $-1$ & $0$ & $0$ & $-0.7667$ & $<2\times 10^{16}$\\
+ $\psi_2$ & $0$ & $1$ & $-1$ & $0$ & $1.5167$ & $<2\times 10^{16}$\\
+ $\psi_3$ & $0$ & $0$ & $1$ & $-1$ & $-0.4500$ & $7.09\times 10^{13}$\\
+ $\psi_4$ & $1$ & $-2$ & $1$ & $0$ & $-2.2834$ & $<2\times 10^{16}$\\
+ $\psi_5$ & $1$ & $0$ & $1$ & $-2$ & $-0.1500$ & $0.0613$\\
+ $\psi_6$ & $0$ & $1$ & $0$ & $-1$ & $1.0667$ & $<2\times 10^{16}$\\
+ \hline
+\end{tabular}
+\end{table}
+
+\hypertarget{type-i-error-solution}{%
+\subsubsection{Type I Error Solution}\label{type-i-error-solution}}
+
+There are total 6 tests with \(\alpha=0.05\):
+\[\alpha_{FW}=P(\text{at least one Type I Error})=1-(1-0.05)^6=0.2649\]
+The probability of having a Type I Error somewhere during tests is
+\(26.49\%\). The test focuses on the pairwise comparison, and the
+experiment design is balanced. Using Tukey's HSD correction is the best
+way to solve high Type I error issue. There are \({4\choose 2}=6\) pairs
+of comparison in the Tukey's HSD. Table 3 shows the 95\% family-wise
+confidence interval level.
+
+\begin{table}[H]
+\caption{Tukey Multiple Comparisons of Means with $95\%$ Family-Wise CI}
+\vspace{4pt}
+\centering
+\begin{tabular}{ |p{5cm}||p{4cm}|p{4cm}|  }
+ \hline
+ Treatment Comparisons & Confidence Interval&$\hat{\psi}$\\
+ \hline
+ Boiled vs. Stilled & $(0.6463,0.8870)$ &$0.7667$\\
+ Filtered vs. Stilled & $(-0.8704,-0.6296)$ & $-0.7500$\\
+ Frozen vs. Stilled & $(-0.4204,-0.1796)$ & $-0.3000$\\
+ Filtered vs. Boiled & $(-1.6370,-1.3963)$ & $-1.5167$\\
+ Frozen vs. Boiled & $(-1.1870,-0.9463)$ & $-1.0667$\\
+ Frozen vs. Filtered & $(0.3296,0.5704)$ & $0.4500$\\
+ \hline
+\end{tabular}
+\end{table}
+
+\hypertarget{conclusion}{%
+\subsection{Conclusion}\label{conclusion}}
+
+Based on the complex comparison, there is strong evidence that Boiled
+Water increases the pH value comparing to Stilled Water and Filtered
+Water. There is also strong evidence that Filtered Water decreases pH
+value comparing to Frozen Water, Higher temperature method increases pH
+value comparing to Low and Medium temperature level. However, the
+statistics show there is no evidence that Medium temperature decrease pH
+value comparing to Low temperature. Furthermore, the Tukey's CI reduces
+the Type I Error rate and gives a significant results of pairwise
+comparisons since all comparisons do not contain \(0\) value of CI.
+Thus, there is a strong evidence to deduce that different water
+processing techniques do change the pH values accordingly. The best way
+to increase pH value includes boiling the water with higher
+temperatures, and the best way to decrease pH value is to filtering the
+water while lowering the temperature.
+
+\hypertarget{limitations-and-discussion}{%
+\subsection{Limitations and
+Discussion}\label{limitations-and-discussion}}
+
+The experiment only takes place with the object water, other substances
+are not considered. The temperature indeed plays a strong role in
+altering the pH value. There are more methods to consider the
+temperature as a factor, such as ANCOVA, or other variable selection
+criteria that may be better statistical methods to deal with
+quantitative factors. The experiment could have done better if there is
+one more water source to be chosen from. In this manner, Two-Way ANOVA
+can be developed and it expands the experiment details and diversity.
+\newpage
+
+\hypertarget{appendix}{%
+\subsection{Appendix}\label{appendix}}
+
+The appendix contains all R codes and outputs that used during the
+experiment.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(pwr)}\CommentTok{# Packages used in the data analysis}
+\KeywordTok{library}\NormalTok{(tidyverse)}\CommentTok{# Packages used in the data analysis}
+\KeywordTok{library}\NormalTok{(tidyr)}\CommentTok{# Packages used in the data analysis}
+\KeywordTok{library}\NormalTok{(ggplot2)}\CommentTok{# Packages used in the data analysis}
+\KeywordTok{library}\NormalTok{(multcomp)}\CommentTok{# Packages used in the data analysis}
+\KeywordTok{library}\NormalTok{(readxl)}\CommentTok{# Packages used in the data analysis}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pwr.anova.test}\NormalTok{(}\DataTypeTok{k=}\DecValTok{4}\NormalTok{, }\DataTypeTok{n=}\OtherTok{NULL}\NormalTok{, }\DataTypeTok{f=}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{sig.level=}\FloatTok{0.05}\NormalTok{, }\DataTypeTok{power=}\FloatTok{0.8}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Balanced one-way analysis of variance power calculation 
+## 
+##               k = 4
+##               n = 11.92611
+##               f = 0.5
+##       sig.level = 0.05
+##           power = 0.8
+## 
+## NOTE: n is number in each group
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Sample Size Determination}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Final.Data <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{"STA305 FINAL PROJECT DATA.xlsx"}\NormalTok{) }\CommentTok{#Read excel into R}
+\NormalTok{Final.Data <-}\StringTok{ }\NormalTok{Final.Data[}\OperatorTok{-}\KeywordTok{c}\NormalTok{(}\DecValTok{49}\OperatorTok{:}\DecValTok{55}\NormalTok{),] }
+\CommentTok{#Delete unnecessary rows}
+\NormalTok{Final.Data <-}\StringTok{ }\NormalTok{Final.Data }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}
+    \DataTypeTok{pH.Before=}\StringTok{`}\DataTypeTok{pH Before Treatment (0-14)}\StringTok{`}\NormalTok{,}
+    \DataTypeTok{pH.After=}\StringTok{`}\DataTypeTok{pH After Treatment (0-14)}\StringTok{`}\NormalTok{,}
+    \DataTypeTok{Temp.Before=}\StringTok{`}\DataTypeTok{Initial Temperature (℃)}\StringTok{`}\NormalTok{,}
+    \DataTypeTok{Temp.After=}\StringTok{`}\DataTypeTok{Temperature After Treatment (℃)}\StringTok{`}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(Final.Data,}\DataTypeTok{Temp.After.Level=}
+      \KeywordTok{ifelse}\NormalTok{(Temp.After}\OperatorTok{>=}\DecValTok{15} \OperatorTok{&}\NormalTok{Temp.After}\OperatorTok{<}\DecValTok{45}\NormalTok{,}\StringTok{"Medium"}\NormalTok{,}
+      \KeywordTok{ifelse}\NormalTok{(Temp.After}\OperatorTok{<}\DecValTok{15}\NormalTok{, }\StringTok{"Low"}\NormalTok{, }
+      \KeywordTok{ifelse}\NormalTok{(Temp.After}\OperatorTok{>=}\DecValTok{45}\NormalTok{, }\StringTok{"High"}\NormalTok{, }\StringTok{"NA"}\NormalTok{))))}
+\CommentTok{#Data Wrangling, to record Low Medium High Temperatures into dataset}
+\NormalTok{Final.Data}\OperatorTok{$}\NormalTok{DiffinPH=Final.Data}\OperatorTok{$}\NormalTok{pH.After}\OperatorTok{-}\NormalTok{Final.Data}\OperatorTok{$}\NormalTok{pH.Before}
+\CommentTok{#Calculate pH differences}
+\KeywordTok{attach}\NormalTok{(Final.Data)}
+\CommentTok{#Attach the dataset}
+\NormalTok{DiffinPH}\FloatTok{.1}\NormalTok{<-pH.After}\OperatorTok{-}\NormalTok{pH.Before}
+\CommentTok{#Calculate pH differences}
+\NormalTok{DiffinPH.Frozen <-}\StringTok{ }\NormalTok{DiffinPH[Treatment}\OperatorTok{==}\StringTok{"Frozen Water"}\NormalTok{]}
+\CommentTok{#Calculate pH differences for Frozen Water}
+\NormalTok{DiffinPH.Filtered <-}\StringTok{ }\NormalTok{DiffinPH[Treatment}\OperatorTok{==}\StringTok{"Filtered Water"}\NormalTok{]}
+\CommentTok{#Calculate pH differences for Filtered Water}
+\NormalTok{DiffinPH.Boiled <-}\StringTok{ }\NormalTok{DiffinPH[Treatment}\OperatorTok{==}\StringTok{"Boiled Water"}\NormalTok{]}
+\CommentTok{#Calculate pH differences for Boiled Water}
+\NormalTok{DiffinPH.Control <-}\StringTok{ }\NormalTok{DiffinPH[Treatment}\OperatorTok{==}\StringTok{"Control Group"}\NormalTok{]}
+\CommentTok{#Calculate pH differences for Stilled Water}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(Final.Data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Treatment, }\DataTypeTok{y=}\NormalTok{DiffinPH, }\DataTypeTok{fill=}\NormalTok{Treatment))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{"Difference in pH per Water Processing Method"}\NormalTok{,}
+       \DataTypeTok{y=}\StringTok{"PH Difference"}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
+\CommentTok{#Plot the boxplot}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tapply}\NormalTok{(DiffinPH}\FloatTok{.1}\NormalTok{, Treatment, mean) }\CommentTok{#Calculate pH Difference means}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Boiled Water  Control Group Filtered Water   Frozen Water 
+##      0.8416667      0.0750000     -0.6750000     -0.2250000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tapply}\NormalTok{(DiffinPH}\FloatTok{.1}\NormalTok{, Treatment, var)}\CommentTok{#Calculate pH Difference variance}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Boiled Water  Control Group Filtered Water   Frozen Water 
+##    0.008106061    0.011136364    0.016590909    0.012954545
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Final.Data}\OperatorTok{$}\NormalTok{Treatment <-}\StringTok{ }\KeywordTok{relevel}\NormalTok{(}\KeywordTok{factor}\NormalTok{(Final.Data}\OperatorTok{$}\NormalTok{Treatment), }\StringTok{"Control Group"}\NormalTok{)}
+\CommentTok{# Set Stilled Water to be the default}
+\NormalTok{model.final <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(DiffinPH}\OperatorTok{~}\NormalTok{Treatment, }\DataTypeTok{data=}\NormalTok{Final.Data)}
+\CommentTok{# Statistical Modeling for linear regression}
+\KeywordTok{summary}\NormalTok{(model.final)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = DiffinPH ~ Treatment, data = Final.Data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.27500 -0.07500 -0.02500  0.05833  0.27500 
+## 
+## Coefficients:
+##                         Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)              0.07500    0.03188   2.352   0.0232 *  
+## TreatmentBoiled Water    0.76667    0.04509  17.004  < 2e-16 ***
+## TreatmentFiltered Water -0.75000    0.04509 -16.635  < 2e-16 ***
+## TreatmentFrozen Water   -0.30000    0.04509  -6.654 3.68e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1104 on 44 degrees of freedom
+## Multiple R-squared:  0.9646, Adjusted R-squared:  0.9622 
+## F-statistic: 400.2 on 3 and 44 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# To see details of linear regression model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{anova}\NormalTok{(model.final)}\CommentTok{#Run One-Way ANOVA of the model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: DiffinPH
+##           Df  Sum Sq Mean Sq F value    Pr(>F)    
+## Treatment  3 14.6425  4.8808  400.17 < 2.2e-16 ***
+## Residuals 44  0.5367  0.0122                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model.}\FloatTok{2.}\NormalTok{Final <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(DiffinPH}\OperatorTok{~}\NormalTok{Treatment}\DecValTok{-1}\NormalTok{, }\DataTypeTok{data=}\NormalTok{Final.Data) }\CommentTok{#Linear contrasts set up}
+
+\NormalTok{Contrast.Mat<-}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}
+  \OperatorTok{+}\DecValTok{1}\NormalTok{, }\DecValTok{-1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{,}
+  \OperatorTok{+}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{-1}\NormalTok{, }\DecValTok{0}\NormalTok{,}
+  \OperatorTok{+}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{-1}\NormalTok{, }
+  \OperatorTok{+}\DecValTok{1}\NormalTok{, }\DecValTok{-2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }
+  \OperatorTok{+}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{-2}\NormalTok{, }
+  \OperatorTok{+}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{-1}\NormalTok{), }\DataTypeTok{nrow=}\DecValTok{6}\NormalTok{, }\DataTypeTok{byrow=}\OtherTok{TRUE}\NormalTok{)}
+\CommentTok{#Linear Contrasts matrix set up}
+
+\KeywordTok{summary}\NormalTok{(}\KeywordTok{glht}\NormalTok{(model.}\FloatTok{2.}\NormalTok{Final, Contrast.Mat), }\DataTypeTok{test=}\KeywordTok{adjusted}\NormalTok{(}\StringTok{"none"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Fit: lm(formula = DiffinPH ~ Treatment - 1, data = Final.Data)
+## 
+## Linear Hypotheses:
+##        Estimate Std. Error t value Pr(>|t|)    
+## 1 == 0 -0.76667    0.04509 -17.004  < 2e-16 ***
+## 2 == 0  1.51667    0.04509  33.639  < 2e-16 ***
+## 3 == 0 -0.45000    0.04509  -9.981 7.09e-13 ***
+## 4 == 0 -2.28333    0.07809 -29.239  < 2e-16 ***
+## 5 == 0 -0.15000    0.07809  -1.921   0.0613 .  
+## 6 == 0  1.06667    0.04509  23.658  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## (Adjusted p values reported -- none method)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Run the output of complex comparisons}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tukey.CI<-}\KeywordTok{TukeyHSD}\NormalTok{(}\KeywordTok{aov}\NormalTok{(model.final), }\DataTypeTok{factor=}\NormalTok{Treatment, }\DataTypeTok{conf.level=}\FloatTok{0.95}\NormalTok{)}
+\CommentTok{#Tukey CI}
+\NormalTok{tukey.CI}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = model.final)
+## 
+## $Treatment
+##                                    diff        lwr        upr p adj
+## Boiled Water-Control Group    0.7666667  0.6462844  0.8870489 0e+00
+## Filtered Water-Control Group -0.7500000 -0.8703823 -0.6296177 0e+00
+## Frozen Water-Control Group   -0.3000000 -0.4203823 -0.1796177 2e-07
+## Filtered Water-Boiled Water  -1.5166667 -1.6370489 -1.3962844 0e+00
+## Frozen Water-Boiled Water    -1.0666667 -1.1870489 -0.9462844 0e+00
+## Frozen Water-Filtered Water   0.4500000  0.3296177  0.5703823 0e+00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Run output of Tukey CI}
+\end{Highlighting}
+\end{Shaded}
+
+\newpage
+
+\hypertarget{references}{%
+\subsection{References}\label{references}}
+
+Keppel, G., \& Wickens, T. D. (2007). \emph{Design and analysis: A
+researcher's handbook}. Academic Internet Publishers Incorporated.
+
+Akter, T., Jhohura, F. T., Akter, F., Chowdhury, T. R., Mistry, S. K.,
+Dey, D., Barua, M. K., Islam, M. A., \& Rahman, M. (2016). Water quality
+index for MEASURING drinking water quality in rural Bangladesh: A
+cross-sectional study. \emph{Journal of Health, Population and
+Nutrition}, 35(1). \url{https://doi.org/10.1186/s41043-016-0041-5}
+
+Kappler, S., Krahl, M., Geissinger, C., Becker, T., \& Krottenthaler, M.
+(2010). Degradation of iso-\(\alpha\)-acids during wort boiling.
+\emph{Journal of the Institute of Brewing}, 116(4), 332--338.
+\url{https://doi.org/10.1002/j.2050-0416.2010.tb00783.x}
+
+Kim, E. J., Herrera, J. E., Huggins, D., Braam, J., \& Koshowski, S.
+(2011). Effect of ph on the concentrations of lead and trace
+contaminants in drinking water: A combined batch, pipe loop and sentinel
+home study. \emph{Water Research}, 45(9), 2763--2774.
+\url{https://doi.org/10.1016/j.watres.2011.02.023}
+
+\end{document}
